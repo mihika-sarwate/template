@@ -22,6 +22,7 @@ export const demoContent = {
     subheading: 'This is a remixable template powered by Sanity CMS',
     ctaText: 'Get Started',
     ctaLink: '#about',
+    backgroundImage: null,
   },
   about: {
     heading: 'About This Template',
@@ -32,26 +33,27 @@ export const demoContent = {
       { title: 'Fully Customizable', description: 'Add your own sections' },
     ],
   },
-  services: {
-    heading: 'Features',
-    services: [
-      {
-        title: 'Section-Based Pages',
-        description: 'Build pages by composing reusable sections',
-        icon: '🧩',
-      },
-      {
-        title: 'Sanity CMS',
-        description: 'Manage all content from Sanity Studio',
-        icon: '✏️',
-      },
-      {
-        title: 'Template Ready',
-        description: 'Click "Use this template" to create new sites',
-        icon: '🚀',
-      },
-    ],
-  },
+  // Services should be an ARRAY, not nested object
+  services: [
+    {
+      _id: '1',
+      title: 'Section-Based Pages',
+      description: 'Build pages by composing reusable sections',
+      icon: '🧩',
+    },
+    {
+      _id: '2',
+      title: 'Sanity CMS',
+      description: 'Manage all content from Sanity Studio',
+      icon: '✏️',
+    },
+    {
+      _id: '3',
+      title: 'Template Ready',
+      description: 'Click "Use this template" to create new sites',
+      icon: '🚀',
+    },
+  ],
   contact: {
     heading: 'Get Started',
     description: 'Run the setup script to connect your Sanity project',
