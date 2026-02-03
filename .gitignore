@@ -1,5 +1,11 @@
 # Git ignore file
 
+# Next.js
+.next/
+out/
+build/
+.vercel/
+
 # Environment variables
 .env
 .env.local
@@ -10,10 +16,10 @@ node_modules/
 package-lock.json
 yarn.lock
 
-# Sanity Studio - exclude entire sanity folder
-sanity/
-.sanity/
-dist/
+# Sanity Studio - keep schemas but exclude dependencies and cache
+sanity/node_modules/
+sanity/dist/
+sanity/.sanity/
 
 # IDE
 .vscode/

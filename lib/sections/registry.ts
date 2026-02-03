@@ -1,0 +1,45 @@
+/**
+ * SECTION REGISTRY
+ * Maps section types to React components
+ * Used by the page renderer to dynamically render sections
+ */
+
+import { HeroSection } from '@/components/sections/HeroSection'
+import { FeaturesSection } from '@/components/sections/FeaturesSection'
+import { TestimonialsSection } from '@/components/sections/TestimonialsSection'
+import { FAQSection } from '@/components/sections/FAQSection'
+import { CTASection } from '@/components/sections/CTASection'
+
+export interface SectionProps {
+  _key: string
+  _type: string
+  [key: string]: any
+}
+
+/**
+ * Registry of all available sections
+ * Maps Sanity document type names to React components
+ */
+export const sectionRegistry = {
+  heroSection: HeroSection,
+  featuresSection: FeaturesSection,
+  testimonialsSection: TestimonialsSection,
+  faqSection: FAQSection,
+  ctaSection: CTASection,
+} as const
+
+/**
+ * Get component for a section type
+ * @param type - The Sanity section type (e.g., "heroSection")
+ * @returns React component or null if not found
+ */
+export function getSectionComponent(type: string) {
+  return sectionRegistry[type as keyof typeof sectionRegistry] || null
+}
+
+/**
+ * Get all available section types
+ */
+export function getAvailableSectionTypes() {
+  return Object.keys(sectionRegistry)
+}
