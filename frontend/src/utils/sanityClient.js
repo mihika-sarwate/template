@@ -19,6 +19,12 @@ const SANITY_CONFIG = {
 // Check if Sanity is properly configured
 const isSanityConfigured = SANITY_CONFIG.projectId && SANITY_CONFIG.projectId !== '146e0vmd'
 
+// Log configuration status
+console.log('🔍 Sanity Config:', {
+  projectId: SANITY_CONFIG.projectId,
+  configured: isSanityConfigured
+})
+
 /**
  * Build Sanity API URL for GROQ queries
  * @param {string} query - GROQ query string
@@ -65,7 +71,8 @@ export async function fetchSanityData(query) {
       throw new Error(`GROQ error: ${data.error.description}`)
     }
 
-    return data.result
+    // Return the result or the data itself depending on query structure
+    return data.result || data
   } catch (error) {
     console.error('Failed to fetch from Sanity:', error)
     throw error

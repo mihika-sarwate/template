@@ -17,8 +17,11 @@ async function init() {
   try {
     showLoading(true)
     
-    // Fetch all content from Sanity
+    // Fetch all content from Sanity (or use demo content)
+    console.log('📋 Fetching content...')
     siteContent = await fetchAllContent()
+    
+    console.log('📦 Content loaded:', siteContent)
     
     if (!siteContent) {
       throw new Error('No content returned from Sanity')
@@ -38,9 +41,9 @@ async function init() {
     // Apply theme colors if available
     applyThemeColors()
 
-    console.log('✓ Website loaded from Sanity CMS')
+    console.log('✓ Website loaded successfully')
   } catch (error) {
-    console.error('Failed to load website:', error)
+    console.error('❌ Failed to load website:', error)
     showError(`Failed to load content: ${error.message}`)
   } finally {
     showLoading(false)
