@@ -36,6 +36,12 @@ function buildQuery(query) {
  * @returns {Promise<any>} Query result data
  */
 export async function fetchSanityData(query) {
+  // Return demo data if Sanity not configured
+  if (!isSanityConfigured) {
+    console.log('📦 Demo mode: Sanity not configured')
+    return { result: [] }
+  }
+
   try {
     const url = buildQuery(query)
     const headers = {
@@ -149,6 +155,8 @@ export async function fetchContact() {
 export async function fetchFooter() {
   return fetchSanityData(GROQ_QUERIES.FOOTER)
 }
+
+export { demoContent, isSanityConfigured }
 
 export default {
   fetchSanityData,
