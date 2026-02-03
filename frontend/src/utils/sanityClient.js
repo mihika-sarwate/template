@@ -5,14 +5,19 @@
  * It handles authentication and API communication with your Sanity project.
  */
 
-// Configuration - Update these with your Sanity project details
+import { demoContent } from '../data/demoContent.js'
+
+// Configuration - Will be set by setup script or environment variables
 const SANITY_CONFIG = {
-  projectId: '146e0vmd',
+  projectId: '146e0vmd', // Replace with your project ID or leave empty for demo
   dataset: 'production',
   apiVersion: '2024-01-01', // Use current date
   useCdn: true, // Use CDN for faster responses (set false for real-time updates)
   token: '', // Optional: for authenticated requests
 }
+
+// Check if Sanity is properly configured
+const isSanityConfigured = SANITY_CONFIG.projectId && SANITY_CONFIG.projectId !== '146e0vmd'
 
 /**
  * Build Sanity API URL for GROQ queries
@@ -101,9 +106,16 @@ export const GROQ_QUERIES = {
 
 /**
  * Fetch all website content in one call (recommended)
+ * Returns demo content if Sanity is not configured
  * @returns {Promise<object>} All content data
  */
 export async function fetchAllContent() {
+  // If Sanity not configured, return demo content
+  if (!isSanityConfigured) {
+    console.log('📦 Using demo content (Sanity not configured)')
+    return demoContent
+  }
+  
   return fetchSanityData(GROQ_QUERIES.ALL_CONTENT)
 }
 
